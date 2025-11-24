@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoodpakketNederland - Samen Voorbereid op Onverwachte Situaties</title>
+    <style>
+        :root {
+            --community-green: #2e7d32;
+            --trust-blue: #0288d1;
+            --warm-orange: #ef6c00;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            color: #333;
+            line-height: 1.7;
+        }
+        
+        .community-banner {
+            background-color: var(--community-green);
+            color: white;
+            padding: 12px;
+            text-align: center;
+            font-size: 1rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--community-green);
+        }
+        
+        .logo-icon {
+            font-size: 2.2rem;
+            color: var(--trust-blue);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--community-green);
+        }
+        
+        .cta-button {
+            background-color: var(--warm-orange);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #e65100;
+            transform: translateY(-2px);
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, var(--trust-blue), #01579b);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 2.3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .info-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        
+        .info-card-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--trust-blue);
+        }
+        
+        .info-card h3 {
+            margin-bottom: 15px;
+            color: var(--community-green);
+        }
+        
+        .government-section {
+            background-color: #e8f5e9;
+            padding: 60px 0;
+        }
+        
+        .government-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .government-text {
+            flex: 1;
+        }
+        
+        .government-logo {
+            flex: 0 0 150px;
+            text-align: center;
+        }
+        
+        .government-logo img {
+            max-width: 120px;
+            opacity: 0.7;
+        }
+        
+        .checklist {
+            list-style: none;
+            margin-top: 20px;
+        }
+        
+        .checklist li {
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+        }
+        
+        .checklist li:before {
+            content: "✓";
+            color: var(--community-green);
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .packages-section {
+            padding: 60px 0;
+        }
+        
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .package-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+        
+        .package-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .package-header {
+            background-color: var(--trust-blue);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .package-price {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .package-body {
+            padding: 25px;
+        }
+        
+        .package-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+        
+        .package-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .package-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .package-features li:before {
+            content: "✓";
+            color: var(--community-green);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .community-section {
+            background-color: var(--community-green);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .testimonials {
+            padding: 60px 0;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--trust-blue);
+        }
+        
+        .blog-preview {
+            padding: 60px 0;
+            background-color: #f5f5f5;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .blog-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .blog-image {
+            height: 200px;
+            background-color: #ddd;
+        }
+        
+        .blog-content {
+            padding: 20px;
+        }
+        
+        .blog-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--community-green);
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 20px;
+            color: var(--warm-orange);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #999;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .government-content {
+                flex-direction: column;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="community-banner">
+        🤝 Samen Sterk in Onzekere Tijden • Sluit u aan bij 15.000 voorbereide Nederlanders
+    </div>
+    
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🛡️</div>
+                    <h1>NoodpakketNederland</h1>
+                </div>
+                <div class="nav-links">
+                    <a href="#overheid">Overheidsadvies</a>
+                    <a href="#pakketten">Onze Pakketten</a>
+                    <a href="#community">Community</a>
+                    <a href="#blog">Kennisbank</a>
+                </div>
+                <a href="#pakketten" class="cta-button">Samen Voorbereid</a>
+            </div>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h2>Samen voorbereid op onverwachte situaties</h2>
+            <p>Sluit u aan bij de groeiende community van Nederlanders die weloverwogen voorbereid zijn. Want samen staan we sterker.</p>
+            <a href="#pakketten" class="cta-button">Word Onderdeel van de Community</a>
+        </div>
+    </section>
+    
+    <section class="container">
+        <div class="info-cards">
+            <div class="info-card">
+                <div class="info-card-icon">📚</div>
+                <h3>Kennis Delen</h3>
+                <p>Leer van ervaringen van anderen en deel uw eigen kennis in onze community.</p>
+            </div>
+            <div class="info-card">
+                <div class="info-card-icon">🤝</div>
+                <h3>Samen Sterker</h3>
+                <p>Sluit u aan bij lokale groepen en wees samen voorbereid met buren en vrienden.</p>
+            </div>
+            <div class="info-card">
+                <div class="info-card-icon">🛡️</div>
+                <h3>Betrouwbare Producten</h3>
+                <p>Al onze producten zijn getest en voldoen aan de hoogste kwaliteitseisen.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="government-section" id="overheid">
+        <div class="container">
+            <div class="government-content">
+                <div class="government-text">
+                    <h2>Volg het advies van de overheid</h2>
+                    <p>De Rijksoverheid adviseert elk huishouden om voorbereid te zijn op noodsituaties. Zelfredzaamheid gedurende de eerste 72 uur is cruciaal.</p>
+                    
+                    <h3 style="margin-top: 25px;">Officiële checklist:</h3>
+                    <ul class="checklist">
+                        <li>Voldoende drinkwater en voedsel voor minstens 3 dagen</li>
+                        <li>EHBO-spullen en belangrijke medicijnen</li>
+                        <li>Contactmiddelen zoals een radio op batterijen</li>
+                        <li>Contant geld en kopieën van belangrijke documenten</li>
+                        <li>Warmhouddekens en zaklampen</li>
+                    </ul>
+                </div>
+                <div class="government-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Logo_Rijksoverheid.svg/1200px-Logo_Rijksoverheid.svg.png" alt="Rijksoverheid">
+                    <p style="margin-top: 10px; font-style: italic;">Officieel advies</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="packages-section" id="pakketten">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 20px;">Onze Community Pakketten</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 40px;">Kies het pakket dat bij uw situatie past. Alle pakketten worden discreet geleverd en bevatten een handleiding.</p>
+            
+            <div class="packages-grid">
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Starter Pakket</h3>
+                        <div class="package-price">€69,99</div>
+                        <p>Voor 1-2 personen, 3 dagen</p>
+                    </div>
+                    <div class="package-body">
+                        <ul class="package-features">
+                            <li>Drinkwater (6 liter)</li>
+                            <li>Lang houdbaar voedsel</li>
+                            <li>Basis EHBO-set</li>
+                            <li>Zaklamp + batterijen</li>
+                            <li>Batterij radio</li>
+                        </ul>
+                        <a href="#" class="cta-button" style="display: block; text-align: center;">Starten</a>
+                    </div>
+                </div>
+                
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Gezinspakket</h3>
+                        <div class="package-price">€139,99</div>
+                        <p>Voor 4 personen, 5 dagen</p>
+                    </div>
+                    <div class="package-body">
+                        <ul class="package-features">
+                            <li>Alles uit Starter +</li>
+                            <li>Extra water (12 liter)</li>
+                            <li>Uitgebreide EHBO-set</li>
+                            <li>Campingkookset</li>
+                            <li>Powerbank + zonnepaneel</li>
+                            <li>Hygiëne kit</li>
+                        </ul>
+                        <a href="#" class="cta-button" style="display: block; text-align: center;">Gezin Beschermen</a>
+                    </div>
+                </div>
+                
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Community Pakket</h3>
+                        <div class="package-price">€229,99</div>
+                        <p>Voor 4-6 personen, 7+ dagen</p>
+                    </div>
+                    <div class="package-body">
+                        <ul class="package-features">
+                            <li>Alles uit Gezin +</li>
+                            <li>Waterfilter systeem</li>
+                            <li>Draagbare generator</li>
+                            <li>Uitgebreide gereedschaps-set</li>
+                            <li>Communicatie-apparatuur</li>
+                            <li>Extra medicijnen</li>
+                        </ul>
+                        <a href="#" class="cta-button" style="display: block; text-align: center;">Samen Sterk</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="community-section" id="community">
+        <div class="container">
+            <h2>Word onderdeel van onze community</h2>
+            <p style="max-width: 800px; margin: 20px auto; opacity: 0.9;">Sluit u aan bij duizenden Nederlanders die samen voorbereid zijn. Deel kennis, ervaringen en tips.</p>
+            <a href="#" class="cta-button" style="background: white; color: var(--community-green);">Community Toegang</a>
+        </div>
+    </section>
+    
+    <section class="testimonials">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 40px;">Ervaringen uit onze community</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Via de community leerde ik hoe ik mijn gezin beter kan voorbereiden. De lokale groep in mijn buurt is goud waard!"</p>
+                    <p class="testimonial-author">- Mark, Eindhoven</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"De kennisbank heeft me geholpen om een realistisch plan te maken. Ik voel me zoveel zekerder nu."</p>
+                    <p class="testimonial-author">- Linda, Groningen</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Samen met buren hebben we nu een buurtvoorraad. Fijn om te weten dat we op elkaar kunnen rekenen."</p>
+                    <p class="testimonial-author">- Ahmed, Rotterdam</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="blog-preview" id="blog">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 20px;">Uit onze kennisbank</h2>
+            <p style="text-align: center; margin-bottom: 40px;">Leer van experts en ervaringen uit onze community</p>
+            
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-image"></div>
+                    <div class="blog-content">
+                        <h3 class="blog-title">Hoe maak je een familiair noodplan?</h3>
+                        <p>Stap-voor-stap gids voor het opstellen van een effectief noodplan voor uw gezin.</p>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image"></div>
+                    <div class="blog-content">
+                        <h3 class="blog-title">Water zuiveren in noodsituaties</h3>
+                        <p>Verschillende methoden om drinkwater veilig te maken wanneer de voorziening uitvalt.</p>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image"></div>
+                    <div class="blog-content">
+                        <h3 class="blog-title">Buurtvoorbereiding: samen sterker</h3>
+                        <p>Hoe u samen met buren een effectief buurtnoodplan opstelt.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>NoodpakketNederland</h3>
+                    <p>Samen voorbereid op onverwachte situaties. Community, kennis en kwaliteit.</p>
+                    <div class="social-links">
+                        <a href="#">f</a>
+                        <a href="#">t</a>
+                        <a href="#">in</a>
+                        <a href="#">ig</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Community</h3>
+                    <ul>
+                        <li><a href="#">Forum</a></li>
+                        <li><a href="#">Lokale Groepen</a></li>
+                        <li><a href="#">Evenementen</a></li>
+                        <li><a href="#">Kennisbank</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Producten</h3>
+                    <ul>
+                        <li><a href="#">Starter Pakket</a></li>
+                        <li><a href="#">Gezinspakket</a></li>
+                        <li><a href="#">Community Pakket</a></li>
+                        <li><a href="#">Onderdelen</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li>📞 0800-NOOD (6663)</li>
+                        <li>✉️ info@noodpakketnederland.nl</li>
+                        <li>📍 Gemeenschapsstraat 1, Utrecht</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 NoodpakketNederland. Alle rechten voorbehouden.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Eenvoudige interacties kunnen hier worden toegevoegd
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px)';
+            });
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
